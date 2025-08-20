@@ -1,0 +1,21 @@
+# python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# virtual envs
+venv/
+.venv/
+
+# dataset + models (don’t upload large files)
+data/
+models/*.h5
+models/*.keras
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# keep placeholders
+!data/.gitkeep
+!models/.gitkeep
