@@ -1,4 +1,4 @@
-import os, numpy as np
+import os
 import tensorflow as tf
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import (Conv2D, MaxPooling2D, Flatten, Dense,
@@ -6,11 +6,14 @@ from tensorflow.keras.layers import (Conv2D, MaxPooling2D, Flatten, Dense,
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 
-# paths
-train_dir = os.path.join("..","data","train")
-val_dir   = os.path.join("..","data","val")
-save_keras = os.path.join("..","models","emotion_model.keras")
-save_h5    = os.path.join("..","models","emotion_model.h5")  # optional legacy
+# paths (anchored to the project root, not the current working dir,
+# so the script works whether run from repo root or from src/)
+BASE_DIR   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+train_dir  = os.path.join(BASE_DIR, "data", "train")
+val_dir    = os.path.join(BASE_DIR, "data", "val")
+os.makedirs(os.path.join(BASE_DIR, "models"), exist_ok=True)
+save_keras = os.path.join(BASE_DIR, "models", "emotion_model.keras")
+save_h5    = os.path.join(BASE_DIR, "models", "emotion_model.h5")  # optional legacy
 
 # data
 train_gen = ImageDataGenerator(rescale=1./255,

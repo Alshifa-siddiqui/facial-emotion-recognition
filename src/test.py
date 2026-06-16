@@ -5,10 +5,11 @@ import itertools
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import load_model
 
-# paths
-data_dir   = os.path.join("..", "data", "test")
-model_try  = [os.path.join("..","models","emotion_model.keras"),
-              os.path.join("..","models","emotion_model.h5")]
+# paths (anchored to project root so it runs from anywhere)
+BASE_DIR   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+data_dir   = os.path.join(BASE_DIR, "data", "test")
+model_try  = [os.path.join(BASE_DIR, "models", "emotion_model.keras"),
+              os.path.join(BASE_DIR, "models", "emotion_model.h5")]
 
 # load model (keras > h5 fallback)
 model = None
@@ -50,5 +51,6 @@ for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
     plt.text(j, i, cm[i, j], horizontalalignment="center",
              color="white" if cm[i, j] > thresh else "black")
 plt.xlabel('Predicted'); plt.ylabel('True'); plt.tight_layout()
-plt.savefig(os.path.join("..","models","confusion_matrix.png"))
-print("Saved: ../models/confusion_matrix.png")
+cm_path = os.path.join(BASE_DIR, "models", "confusion_matrix.png")
+plt.savefig(cm_path)
+print("Saved:", cm_path)

@@ -61,7 +61,8 @@ If your zip wasn’t split, ask for the auto-split script (70/15/15).
 
 ## 🚀 Train
 
-From the `src` folder OR provide the relative path:
+The scripts resolve paths relative to the project root, so they run the same
+whether you call them from the repo root or from inside `src/`:
 
 ```powershell
 # from repo root
@@ -139,12 +140,9 @@ angry, disgust, fear, happy, neutral, sad, surprise
 
 ```
 tensorflow>=2.10
-keras>=2.10
 opencv-python
 numpy
-pandas
 matplotlib
-seaborn
 scikit-learn
 pillow
 ```
